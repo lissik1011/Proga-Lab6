@@ -23,7 +23,7 @@ public class Update implements Command{
             if (!answ.isEmpty()) {
                 System.out.println("Данные лабораторной работы обновлены.");
             } else {
-                System.out.println("Ошибка соединения с сервером.");
+                System.out.println("Не удается подключиться к серверу.");
             }
         } else {
             System.out.println(answFirst);

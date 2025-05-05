@@ -19,7 +19,7 @@ public class CommandManeger{
                     } catch (IllegalStateException e) {
                         break;
                     }
-                } else if (!loyalCom(scancom)) {
+                } else if (!validCom(scancom)) {
                     System.out.println("Лишнее количество аргументов. Введите help, чтобы узнать доступные команды.");
                 }
                 else if (thisIsCommand(takeCommand(scancom)[0])){
@@ -52,7 +52,7 @@ public class CommandManeger{
     }
 
     // Проверяет, не многовато ли аргументов
-    public boolean loyalCom(String request){
+    public boolean validCom(String request){
         String[] com = request.split("\s+");
         return com.length <= 2;
     }

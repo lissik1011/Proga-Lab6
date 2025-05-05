@@ -10,12 +10,15 @@ public class UDPClient{
   
   public static byte[] sendAndReceive(byte[] sendingData) {
     try (DatagramSocket clientSocket = new DatagramSocket();){
+
       
       InetAddress IPAddress = InetAddress.getByName("localhost");
       byte[] receivingDataBuffer = new byte[65500];
       
       DatagramPacket sendingPacket = new DatagramPacket(sendingData,sendingData.length,IPAddress, SERVICE_PORT);
       clientSocket.send(sendingPacket);
+
+      System.out.println("Попытка x, ждем ответ от сервера");
 
       DatagramPacket receivingPacket = new DatagramPacket(receivingDataBuffer,receivingDataBuffer.length);
       clientSocket.receive(receivingPacket);

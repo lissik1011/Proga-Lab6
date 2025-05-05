@@ -12,24 +12,26 @@ public class Update implements Command{
             long id = Long.parseLong(args);
             LabWork lab = CollectionManager.findLabWorkById(id);
             if (lab != null){
-                CollectionManager.getLabWorks().remove(lab);
-
-                CollectionManager.getLabWorks().add(labWork);
-
-                if (labWork.getAuthor() != null) GroupCountingByAuthor.addAName(labWork.getAuthor().getName());
-                CollectionManager.addIdInSet(labWork.getId());
-                CollectionManager.sort();
-                Info.saveLastDateOfMod();
-                Info.counterOfMod();
-                if (!Info.getDateOfColl()) Info.saveDateOfColl();
-            
+                CollectionManager.getLabWorks().remove(lab);     
+                addLab(labWork);   
                 return "Элемент обновлен.";
-
             } else {
-                return "Лабораторной работы с заданным id нет.";
+                addLab(labWork);
+                return "Лабораторная работа с заданный id была удалена. Элемент был добавлен в коллекцию";
             }
         } catch (NumberFormatException e) {
             return "Введен неверный id работы.";
         }
+    }
+
+    private void addLab(LabWork labWork){
+        CollectionManager.getLabWorks().add(labWork);
+
+        if (labWork.getAuthor() != null) GroupCountingByAuthor.addAName(labWork.getAuthor().getName());
+        CollectionManager.addIdInSet(labWork.getId());
+        CollectionManager.sort();
+        Info.saveLastDateOfMod();
+        Info.counterOfMod();
+        if (!Info.getDateOfColl()) Info.saveDateOfColl();
     }
 }
