@@ -18,8 +18,6 @@ public class UDPClient{
       DatagramPacket sendingPacket = new DatagramPacket(sendingData,sendingData.length,IPAddress, SERVICE_PORT);
       clientSocket.send(sendingPacket);
 
-      System.out.println("Попытка x, ждем ответ от сервера");
-
       DatagramPacket receivingPacket = new DatagramPacket(receivingDataBuffer,receivingDataBuffer.length);
       clientSocket.receive(receivingPacket);
       
